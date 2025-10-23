@@ -16,9 +16,18 @@
 
     <!-- Creazione del componente React -->
     <script type="text/babel">
-       const ListaAnimali = () => {
-        const animals = ["Cane", "Gatto", "Coniglio", "Pesce Rosso", "Pappagallo"];
+        const { useState } = React;
+        const ListaAnimali = () => {
+        const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
+        const [animals, setAnimals] = useState([]);
+        const addAnimal = () => {
+            const randomIndex = Math.floor(Math.random() * animalsChoices.length);
+            const randomAnimal = animalsChoices[randomIndex];
+            setAnimals([...animals, randomAnimal]);
+        };
         return (
+            <>
+            <button onClick={addAnimal}>Aggiungi Animale</button>
             <details>
                 <summary>Animali</summary>
                 <ul>
@@ -27,6 +36,7 @@
                     ))}
                 </ul>
             </details>
+            </>
         )
        }
     </script>
